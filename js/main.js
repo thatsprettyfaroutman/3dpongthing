@@ -12,7 +12,7 @@ renderer.shadowMapType = THREE.PCFSoftShadowMap;
 var camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 camera.position.z = 20;
-camera.position.y = 6;
+camera.position.y = 26;
 
 // Sphere
 var geometry = new THREE.SphereGeometry( 1, 32, 32 );
@@ -36,12 +36,34 @@ sphere.position.y = 1;
 
 
 // Plane
+
+var mapHeight = THREE.ImageUtils.loadTexture( "img/bump.jpg" );
+
+mapHeight.anisotropy = 4;
+mapHeight.repeat.set( 0.998, 0.998 );
+mapHeight.offset.set( 0.001, 0.001 )
+mapHeight.wrapS = mapHeight.wrapT = THREE.RepeatWrapping;
+mapHeight.format = THREE.RGBFormat;
+
 var geometry = new THREE.PlaneGeometry( 32, 32, 32, 32 );
-var material = new THREE.MeshBasicMaterial( {
-  color: 0xffff00,
-  side: THREE.DoubleSide,
-  wireframe : !true
-});
+
+var material = new THREE.MeshPhongMaterial( {
+  ambient: 0x552811,
+  color: 0x552811,
+  specular: 0x333333,
+  shininess: 25,
+  bumpMap: mapHeight,
+  bumpScale: 19,
+  metal: false
+} );
+
+//
+// var material = new THREE.MeshBasicMaterial( {
+//   color: 0xffff00,
+//   side: THREE.DoubleSide,
+//   wireframe : !true
+// });
+
 var plane = new THREE.Mesh( geometry, material );
 scene.add( plane );
 
