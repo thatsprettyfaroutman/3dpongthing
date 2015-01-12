@@ -1,6 +1,0 @@
-[submodule "js/libs/threejs"]
-	path = js/libs/threejs
-	url = git@github.com:mrdoob/three.js.git
-[submodule "js/libs/tweenmax"]
-	path = js/libs/tweenmax
-	url = git@github.com:greensock/GreenSock-JS.git
